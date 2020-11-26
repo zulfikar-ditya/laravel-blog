@@ -1,10 +1,9 @@
-<form action="{{ $item['href'] }}" method="{{ $item['method'] }}" class="form-inline mx-2">
-    {{ csrf_field() }}
+<form action="" method="get" class="form-inline mx-2">
     <div class="input-group">
-        <input class="form-control form-control-navbar" type="search" name="{{ $item['input_name'] }}"
+        <input class="form-control" type="search" name="search"
                placeholder="{{ $item['text'] }}" aria-label="{{ $item['aria-label'] ?? $item['text'] }}">
         <div class="input-group-append">
-            <button class="btn btn-navbar" type="submit">
+            <button class="btn btn-navbar bg-maroon" type="submit">
                 <i class="fas fa-search"></i>
             </button>
         </div>

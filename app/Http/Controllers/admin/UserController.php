@@ -4,6 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -12,9 +15,40 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $searchValue = '';
+        $filter = '';
+        if($request->search) {
+            $searchValue = $request->search;
+            $query = $request->search;
+            $search = str_replace('$query$', $query, '%$query$%');
+            $data = User::where('name', 'like', $search)->paginate(50);
+        } else {
+             $data = DB::table('users')->paginate(50);
+        }
+        if($request->filter) {
+            if($request->filter == 1) {
+                $data = User::role('superuser')->paginate(50);
+                $filter = 'superuser';
+            } 
+            elseif($request->filter == 2) {
+                $data = User::role('staff')->paginate(50);
+                $filter = 'staff';
+            } 
+            elseif($request->filter == 3) {
+                $data = User::role('reporter')->paginate(50);
+                $filter = 'reporter';
+            } 
+            elseif($request->filter == 4) {
+                $data = User::role('user')->paginate(50);
+                $filter = 'user';
+            }
+        } 
+        return view('admin.user.list', ['data' => $data, 
+                                        'searchValue' => $searchValue, 
+                                        'filter' => $filter
+                                        ]);
     }
 
     /**

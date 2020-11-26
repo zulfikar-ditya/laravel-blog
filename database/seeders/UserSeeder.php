@@ -18,6 +18,8 @@ class UserSeeder extends Seeder
             'name' => 'superuser',
             'email' => 'superuser@mail.com',
             'password' => bcrypt('superuserpassword'),
+            'phonenumber' => 123412341234,
+            'address' => 'indonesia',
         ]);
         $superuser->assignRole('superuser');
 
@@ -25,6 +27,8 @@ class UserSeeder extends Seeder
             'name' => 'staff',
             'email' => 'staff@mail.com',
             'password' => bcrypt('staffpassword'),
+            'phonenumber' => 123412341234,
+            'address' => 'indonesia',
         ]);
         $staff->assignRole('staff');
 
@@ -32,6 +36,8 @@ class UserSeeder extends Seeder
             'name' => 'reporter',
             'email' => 'reporter@mail.com',
             'password' => bcrypt('reporterpassword'),
+            'phonenumber' => 123412341234,
+            'address' => 'indonesia',
         ]);
         $reporter->assignRole('reporter');
 
@@ -39,6 +45,8 @@ class UserSeeder extends Seeder
             'name' => 'userone',
             'email' => 'userone@mail.com',
             'password' => bcrypt('useronepassword'),
+            'phonenumber' => 123412341234,
+            'address' => 'indonesia',
         ]);
         $userone->assignRole('user');
     }

@@ -25,7 +25,7 @@ class CreateBlogsTable extends Migration
 
             $table->timestamps();
             $table->foreign('category')->references('id')->on('categories');
-            $table->foreign('user')->references('name')->on('users');
+            $table->foreign('user')->references('id')->on('users');
         });
     }
 
