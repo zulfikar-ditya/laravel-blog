@@ -27,14 +27,19 @@ Route::group(['middleware' => ['auth']], function() {
     // admin routing
     Route::group(['middleware' => ['role:superuser|staff']], function() {
         // base route
-        Route::view('admin/', 'admin.index');
+        Route::view('admin/', 'admin.index')->name('adminIndex');
 
         // user
         Route::get('admin/user/list/', [UserAdmin::class, 'index'])->name('admin-user-list');
+        Route::get('admin/user/add/', [UserAdmin::class, 'create'])->name('admin-user-add');
+        Route::post('admin/user/add/', [UserAdmin::class, 'create'])->name('admin-user-add');
+        Route::get('admin/user/change/{id}/', [UserAdmin::class, 'edit'])->name('admin-user-edit');
+        Route::post('admin/user/change/{id}/', [UserAdmin::class, 'update'])->name('admin-user-edit');
 
         // superuser page
         Route::group(['middleware' => ['role:superuser']], function() {
-
+            Route::get('admin/user/delete/{id}/', [UserAdmin::class, 'destroyConfirm'])->name('admin-user-delete');
+            Route::post('admin/user/delete/{id}/', [UserAdmin::class, 'destroy'])->name('admin-user-delete');
         });
 
         // staff page

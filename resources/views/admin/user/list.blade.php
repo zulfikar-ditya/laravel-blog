@@ -3,12 +3,44 @@
 @section('default-title', '- User - List')
 
 @section('default-content')
-<div class="container text-capitalize">
+<div class="container text-capitalize bg-white shadow p-5">
+    @if (Session::has('add-success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <p class="lead">Success Add Data</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    @endif
+    @if (Session::has('update-success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <p class="lead">Success Update Data</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    @endif
+    @if (Session::has('update-password-success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <p class="lead">Success Update password</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    @endif
+    @if (Session::has('delete-success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <p class="lead">Success Delete data</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    @endif
     <div class="row my-3">
-        <div class="col-1">
-            <a href="" class="btn btn-outline-danger">Add <i class="fas fa-plus"></i></a>
+        <div class="col-2">
+            <a href="{{ route('admin-user-add') }}" class="btn btn-outline-danger">Add <i class="fas fa-plus"></i></a>
         </div>
-        <div class="col-4">
+        <div class="col-10">
             <form action="" method="get" class="form-inline">
                 <label for="" class="mr-1 p">Filter: </label>
                 <select name="filter" id="" class="form-control mr-3" required>
@@ -45,7 +77,7 @@
                 @foreach ($data as $item)
                 <tr>
                     <th>{{$item->id}}</th>
-                    <td>{{$item->name}}</td>
+                    <td><a href="{{ route('admin-user-edit', ['id' => $item->id]) }}">{{$item->name}}</a></td>
                     <td>{{$item->email}}</td>
                     <td>{{$item->address}}</td>
                     <td>{{$item->phonenumber}}</td>

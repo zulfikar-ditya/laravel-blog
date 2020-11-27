@@ -1,7 +1,7 @@
-<aside class="main-sidebar {{ config('adminlte.classes_sidebar', 'sidebar-dark-primary elevation-4') }} bg-navy">
+<aside class="main-sidebar {{ config('adminlte.classes_sidebar', 'sidebar-dark-primary elevation-4') }} bg-navy" style="position: fixed;">
 
     {{-- Sidebar brand logo --}}
-    <a href="" class="brand-link ml-2">
+    <a href="{{route ('adminIndex')}}" class="brand-link ml-2">
         <i class="fab fa-laravel text-danger"></i>
         <span class="brand-text font-weight-light h3">Laravel Blog</span>
     </a>
@@ -28,7 +28,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item bg-primary">
-                                <a href="" class="nav-link ml-3">
+                                <a href="{{ route('admin-user-add') }}" class="nav-link ml-3">
                                     <i class="fas fa-user-plus nav-icon"></i>
                                     <p>Add</p>
                                 </a>

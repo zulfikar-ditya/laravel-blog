@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
 
@@ -56,9 +58,46 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        if ($request->isMethod('post')) {
+            $request->validate([
+                'email' => 'required|unique:users|max:255',
+                'phonenumber' => 'min:12|max:12',
+            ]);
+            if ($request->password != $request->Confirmpassword) {
+                $request->session()->flash('password-not-match');
+                return redirect(route('admin-user-add'));
+            }
+            $newData = new User;
+            $newData->name = $request->name;
+            $newData->email = $request->email;
+            $newData->address = $request->address;
+            $newData->phonenumber = $request->phonenumber;
+            $newData->password = bcrypt($request->password);
+            $request->session()->flash('add-success');
+            $newData->save();
+            if ($request->role) {
+                if($request->role == 1) {
+                    $newData->assignRole('superuser');
+                } 
+                else if($request->role == 2) {
+                    $newData->assignRole('staff');
+                }
+                else if($request->role == 3) {
+                    $newData->assignRole('reporter');
+                } 
+                else if($request->role == 4) {
+                    $newData->assignRole('user');
+                }
+            }
+            if ($request->add) {
+                return redirect(route('admin-user-list'));
+            } else{
+                return redirect(route('admin-user-add'));
+            }
+        }
+        return view('admin.user.add');
     }
 
     /**
@@ -91,7 +130,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = User::findOrFail($id);
+        return view('admin.user.edit', ['data' => $data]);
     }
 
     /**
@@ -103,7 +143,45 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = User::findOrFail($id);
+        if($request->save) {
+            $request->validate([
+                'email' => 'required|max:255',
+                'phonenumber' => 'min:12|max:12',
+            ]);
+            $data->name = $request->name;
+            $data->email = $request->email;
+            $data->address = $request->address;
+            $data->phonenumber = $request->phonenumber;
+            $request->session()->flash('update-success');
+        }
+        else if ($request->savePassword) {
+            if (Auth::user()->hasRole('staff')) {
+                if(Hash::check($request->PrevPass, $data['password'])) {
+                    if ($request->newPass != $request->confirmPass) {
+                        $request->session()->flash('password-not-match');
+                        return redirect(route('admin-user-edit', ['id' => $data['id']]));
+                    } else {
+                        $data->password = bcrypt($request->newPass);
+                        $request->session()->flash('update-password-success');
+                    }
+                } 
+                else {
+                    $request->session()->flash('password-wrong');
+                    return redirect(route('admin-user-edit', ['id' => $data['id']]));
+                }
+            } else {
+                if ($request->newPass != $request->confirmPass) {
+                    $request->session()->flash('password-not-match');
+                    return redirect(route('admin-user-edit', ['id' => $data['id']]));
+                } else {
+                    $data->password = bcrypt($request->newPass);
+                    $request->session()->flash('update-password-success');
+                }
+            }
+        }
+        $data->save();
+        return redirect(route('admin-user-list'));
     }
 
     /**
@@ -112,8 +190,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroyConfirm($id)
     {
-        //
+        $data = User::findOrFail($id);
+        return view('admin.user.delete', ['data' => $data]);
+    }
+    
+    public function destroy(Request $request, $id)
+    {   
+        $data = User::findOrFail($id);
+        $data->delete();
+        $request->session()->flash('delete-success');
+        return redirect(route('admin-user-list'));
     }
 }

@@ -10,7 +10,7 @@
             <div class="mt-3">
                 <p class="lead">Users</p>
                 <ul class="list-group border-none shadow">
-                <a href="">
+                <a href="{{ route('admin-user-add') }}">
                         <li class="list-group-item bg-maroon">
                             <span class="mr-1">Add </span> <i class="fas fa-user-plus"></i>
                         </li>
