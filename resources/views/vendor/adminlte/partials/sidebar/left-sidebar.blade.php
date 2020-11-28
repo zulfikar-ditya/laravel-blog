@@ -54,13 +54,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item bg-purple">
-                                <a href="#" class="nav-link ml-3">
+                                <a href="{{ route('admin-category-add') }}" class="nav-link ml-3">
                                     <i class="fas fa-plus-square nav-icon"></i>
                                     <p>Add</p>
                                 </a>
                             </li>
                             <li class="nav-item bg-info">
-                                <a href="#" class="nav-link ml-3">
+                                <a href="{{ route('admin-category-list') }}" class="nav-link ml-3">
                                     <i class="fas fa-list nav-icon"></i>
                                     <p>List</p>
                                 </a>

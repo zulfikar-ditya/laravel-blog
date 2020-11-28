@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\UserController as UserAdmin;
+use App\Http\Controllers\admin\CategoryController as CategoryAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +37,17 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('admin/user/change/{id}/', [UserAdmin::class, 'edit'])->name('admin-user-edit');
         Route::post('admin/user/change/{id}/', [UserAdmin::class, 'update'])->name('admin-user-edit');
 
+        // category
+        // Route::get('admin/category/', [CategoryAdmin::class, ''])->name('admin-category-');
+        Route::get('admin/category/list/', [CategoryAdmin::class, 'index'])->name('admin-category-list');
+        Route::get('admin/category/add', [CategoryAdmin::class, 'create'])->name('admin-category-add');
+        Route::post('admin/category/add', [CategoryAdmin::class, 'store'])->name('admin-category-add');
+        Route::get('admin/category/change/{id}/', [CategoryAdmin::class, 'edit'])->name('admin-category-edit');
+        Route::post('admin/category/change/{id}/', [CategoryAdmin::class, 'update'])->name('admin-category-edit');
+
         // superuser page
         Route::group(['middleware' => ['role:superuser']], function() {
+            // user
             Route::get('admin/user/delete/{id}/', [UserAdmin::class, 'destroyConfirm'])->name('admin-user-delete');
             Route::post('admin/user/delete/{id}/', [UserAdmin::class, 'destroy'])->name('admin-user-delete');
         });

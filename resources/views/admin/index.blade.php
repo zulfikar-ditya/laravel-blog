@@ -29,12 +29,12 @@
             <div class="mt-3">
                 <p class="lead">categories</p>
                 <ul class="list-group border-none shadow">
-                    <a href="">
+                    <a href="{{ route('admin-category-add') }}">
                         <li class="list-group-item bg-olive">
                             <span class="mr-1">Add </span> <i class="fa fa-plus-square"></i>
                         </li>
                     </a>
-                    <a href="">
+                    <a href="{{ route('admin-category-list') }}">
                         <li class="list-group-item bg-olive">
                             <span class="mr-1">List </span> <i class="fas fa-list"></i>
                         </li>
@@ -46,7 +46,7 @@
         <div class="col-md-3 bg-indigo p-4 rounded shadow">
             <i class="far fa-newspaper fa-2x"></i>
             <div class="mt-3">
-                <p class="lead">categories</p>
+                <p class="lead">Articles</p>
                 <ul class="list-group border-none shadow">
                     <a href="">
                         <li class="list-group-item bg-indigo">
