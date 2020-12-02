@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\UserController as UserAdmin;
 use App\Http\Controllers\admin\CategoryController as CategoryAdmin;
 
+use App\Http\Controllers\reporter\BlogController as BlogReporter;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,7 +62,10 @@ Route::group(['middleware' => ['auth']], function() {
 
     // reporter route
     Route::group(['middleware' => ['role:reporter']], function() {
-
+        Route::get('reporter/', [BlogReporter::class, 'base'])->name('ReporterIndex');
+        Route::get('reporter/list', [BlogReporter::class, 'index'])->name('reporter-list-post');
+        Route::get('reporter/add', [BlogReporter::class, 'create'])->name('reporter-add-post');
+        Route::post('reporter/add', [BlogReporter::class, 'store'])->name('reporter-add-post');
     });
 
 });

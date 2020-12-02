@@ -6,7 +6,7 @@
 <div class="container text-capitalize bg-white shadow p-5">
     @if (Session::has('add-success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <p class="lead">Success Add Data</p>
+        <span class="lead">Success Add Data</span>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -14,7 +14,7 @@
     @endif
     @if (Session::has('update-success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <p class="lead">Success Update Data</p>
+        <span class="lead">Success Update Data</span>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -22,7 +22,7 @@
     @endif
     @if (Session::has('update-password-success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <p class="lead">Success Update password</p>
+        <span class="lead">Success Update password</span>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -30,7 +30,7 @@
     @endif
     @if (Session::has('delete-success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <p class="lead">Success Delete data</p>
+        <span class="lead">Success Delete data</span>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

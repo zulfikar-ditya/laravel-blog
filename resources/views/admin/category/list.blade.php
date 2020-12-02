@@ -6,7 +6,7 @@
 <div class="container mb-5 bg-white shadow p-5 text-capitalize">
     @if (Session::has('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <p class="lead">Success Add Data</p>
+        <span class="lead">Success Add Data</span>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -14,7 +14,7 @@
     @endif
     @if (Session::has('update-success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <p class="lead">Success update Data</p>
+        <span class="lead">Success update Data</span>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>

@@ -1,7 +1,11 @@
 <aside class="main-sidebar {{ config('adminlte.classes_sidebar', 'sidebar-dark-primary elevation-4') }} bg-navy" style="position: fixed;">
 
     {{-- Sidebar brand logo --}}
+    @if (Auth::user()->hasRole('superuser|staff'))
     <a href="{{route ('adminIndex')}}" class="brand-link ml-2">
+    @else
+    <a href="{{route ('ReporterIndex')}}" class="brand-link ml-2">
+    @endif
         <i class="fab fa-laravel text-danger"></i>
         <span class="brand-text font-weight-light h3">Laravel Blog</span>
     </a>
@@ -16,7 +20,7 @@
                 {{-- Configured sidebar links --}}
                 {{-- @each('adminlte::partials.sidebar.menu-item', $adminlte->menu('sidebar'), 'item') --}}
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
-
+                    @if (Auth::user()->hasRole('superuser|staff'))                        
                     {{-- user --}}
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link bg-maroon">
@@ -94,7 +98,34 @@
                         </ul>
                     </li>
                     {{-- blog --}}
-                    
+                    @else
+                    <li class="nav-item has-treeview menu-open">
+
+                        <a href="#" class="nav-link bg-indigo">
+                            <i class="nav-icon far fa-newspaper"></i>
+                            <p>
+                                Articles
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item bg-pink">
+                                <a href="{{ route('reporter-add-post') }}" class="nav-link ml-3">
+                                    <i class="fas fa-plus-square nav-icon"></i>
+                                    <p>Add</p>
+                                </a>
+                            </li>
+                            <li class="nav-item bg-lime">
+                                <a href="#" class="nav-link ml-3">
+                                    <i class="fas fa-list nav-icon"></i>
+                                    <p>List</p>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li>
+                    @endif
                 </ul>
             </ul>
         </nav>

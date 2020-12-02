@@ -22,6 +22,7 @@ class CreateBlogsTable extends Migration
             $table->unsignedBigInteger('category');
             $table->unsignedBigInteger('user');
             $table->boolean('status')->default(true);
+            $table->integer('viewer')->default(0);
 
             $table->timestamps();
             $table->foreign('category')->references('id')->on('categories');
