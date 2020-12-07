@@ -3,7 +3,7 @@
 @section('default-title', '- User - Delete')
 
 @section('default-content')
-    <div class="container bg-white shadow p-5">
+    <div class="container bg-white shadow p-5" style="margin-top: 70px">
         <p class="lead">Name: {{$data['name']}}</p>
         <div class="row my-3">
             <form action="" method="post">

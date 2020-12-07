@@ -3,7 +3,7 @@
 @section('default-title', '- User - List')
 
 @section('default-content')
-<div class="container text-capitalize bg-white shadow p-5">
+<div class="container text-capitalize bg-white shadow p-5" style="margin-top: 70px">
     @if (Session::has('add-success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <span class="lead">Success Add Data</span>

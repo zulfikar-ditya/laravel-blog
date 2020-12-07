@@ -1,7 +1,7 @@
 @extends('admin.base')
 
 @section('default-content')
-<div class="container my-3">
+<div class="container" style="margin-top: 70px">
 
     <div class="row justify-content-around align-items-center text-center text-capitalize">
 

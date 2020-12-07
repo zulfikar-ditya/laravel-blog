@@ -66,6 +66,10 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('reporter/list', [BlogReporter::class, 'index'])->name('reporter-list-post');
         Route::get('reporter/add', [BlogReporter::class, 'create'])->name('reporter-add-post');
         Route::post('reporter/add', [BlogReporter::class, 'store'])->name('reporter-add-post');
+        Route::get('reporter/edit/{id}', [BlogReporter::class, 'edit'])->name('reporter-edit-post');
+        Route::post('reporter/edit/{id}', [BlogReporter::class, 'update'])->name('reporter-edit-post');
+        Route::get('reporter/delete/{id}', [BlogReporter::class, 'destroyConfirm'])->name('reporter-delete-post');
+        Route::post('reporter/delete/{id}', [BlogReporter::class, 'destroy'])->name('reporter-delete-post');
     });
 
 });

@@ -21,10 +21,43 @@ class BlogController extends Controller
         return view('reporter.index');
     }
 
-    public function index() 
+    public function index(Request $request) 
     {
-        $data = DB::table('blogs')->where('status', '=', '1', 'and','user', '=', Auth::user()->id)->get();
-        return view('reporter.list', ['data' => $data]);
+        $search = '';
+        $filter = '';
+        $category = category::all();
+        $data = blog::where([
+                            ['user', '=', Auth::user()->id],
+                            ['status', '=', '1']
+                            ])
+                            ->orderBy('id', 'desc')
+                            ->paginate(50);
+        if ($request->search) {
+            $search = $request->search;
+            $data = blog::where([
+                                ['user', '=', Auth::user()->id],
+                                ['title', 'LIKE', str_replace('$query$', $search, '%$query$%')],
+                                ['status', '=', '1']
+                                ])
+                                ->orderBy('id', 'desc')
+                                ->paginate(50);
+        }
+        if ($request->filter) {
+            $filter = category::find($request->filter);
+            $data = blog::where([
+                                ['user', '=', Auth::user()->id],
+                                ['category', '=', $filter['id']],
+                                ['status', '=', '1']
+                                ])
+                                ->orderBy('id', 'desc')
+                                ->paginate(50);
+        }
+        return view('reporter.list', [
+            'data' => $data,
+            'search' => $search,
+            'filter' => $filter,
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -88,7 +121,17 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = blog::where([
+            ['id', '=', $id],
+            ['status', '=', 1],
+            ['user', '=', Auth::user()->id],
+        ])
+        ->get();
+        if (count($data) == 0) {
+            return abort(404);
+        }
+        $category = category::all();
+        return view('reporter.edit', ['data' => $data, 'category' => $category]);
     }
 
     /**
@@ -100,7 +143,38 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'max:100',
+            'image_source' => 'max:50',
+        ]);
+        $data = blog::where([
+            ['id', '=', $id],
+            ['status', '=', 1],
+            ['user', '=', Auth::user()->id],
+        ])
+        ->get();
+        if (count($data) == 0) {
+            return abort(404);
+        }
+        $data[0]['title'] = $request->title;
+        $data[0]['image_source'] = $request->image_source;
+        $data[0]['category'] = $request->category;
+        $data[0]['content'] = $request->content;
+        if($request->hasFile('image') != null) {
+            $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,',
+            ]);
+            $date = date('Y-m-d');
+            $place = str_replace('$date$', $date, 'public/images/post/$date$/');
+            $name = $request->title.time().'.'.$request->file('image')->getClientOriginalExtension();
+            // move image
+            $request->file('image')->move(public_path($place), $name);
+            $data[0]['image']->image = $place.$name;
+
+        }
+        $data['0']->save();
+        $request->session()->flash('success-update');
+        return redirect(route('reporter-list-post'));
     }
 
     /**
@@ -109,8 +183,32 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroyConfirm($id) {
+        $data = blog::where([
+            ['id', '=', $id],
+            ['status', '=', 1],
+            ['user', '=', Auth::user()->id],
+        ])
+        ->get();
+        if (count($data) == 0) {
+            return abort(404);
+        }
+        return view('reporter.delete', ['data' => $data[0] ]);
+    }
+    public function destroy(Request $request, $id)
     {
-        //
+        $data = blog::where([
+            ['id', '=', $id],
+            ['status', '=', 1],
+            ['user', '=', Auth::user()->id],
+        ])
+        ->get();
+        if (count($data) == 0) {
+            return abort(404);
+        }
+        $data[0]['status'] = false;
+        $data[0]->save();
+        $request->session()->flash('delete');
+        return redirect(route('reporter-list-post'));
     }
 }

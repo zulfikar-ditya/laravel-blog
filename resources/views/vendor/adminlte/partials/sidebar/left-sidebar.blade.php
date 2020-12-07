@@ -117,7 +117,7 @@
                                 </a>
                             </li>
                             <li class="nav-item bg-lime">
-                                <a href="#" class="nav-link ml-3">
+                                <a href="{{route ('reporter-list-post')}}" class="nav-link ml-3">
                                     <i class="fas fa-list nav-icon"></i>
                                     <p>List</p>
                                 </a>

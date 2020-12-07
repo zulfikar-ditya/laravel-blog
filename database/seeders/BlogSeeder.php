@@ -18,9 +18,6 @@ class BlogSeeder extends Seeder
             'title' => 'apa itu corona',
             'image' => 'public/images/post/2020-12-02/apa itu corona1606879222.jpg',
             'image_source' => 'pixabay.com',
-            'category' => 1,
-            'status' => 1,
-            'user' => 3,
             'content' => '<p><strong>Virus Corona atau <em>severe acute respiratory syndrome</em> <em>coronavirus 2</em> (SARS-CoV-2) adalah virus yang menyerang sistem pernapasan. </strong><strong>Penyakit karena infeksi virus ini disebut COVID-19. </strong><strong>Virus </strong><strong>Corona </strong><strong>bisa menyebabkan </strong><strong>gangguan ringan pada </strong><strong>sistem pernapasan, infeksi paru-paru yang berat, hingga kematian.</strong></p>
             <p><em>Severe acute respiratory syndrome coronavirus 2</em> (SARS-CoV-2) yang lebih dikenal dengan nama virus Corona adalah jenis baru dari coronavirus yang menular ke manusia. Virus ini bisa menyerang siapa saja, seperti <a href="https://www.alodokter.com/alasan-mengapa-lansia-lebih-rentan-terhadap-virus-corona">lansia</a> (golongan usia lanjut), orang dewasa, <a href="https://www.alodokter.com/waspadai-infeksi-virus-corona-pada-anak">anak-anak</a>, dan <a href="https://www.alodokter.com/lindungi-bayi-anda-dari-virus-corona">bayi</a>, termasuk ibu hamil dan <a href="https://www.alodokter.com/infeksi-virus-corona-pada-ibu-menyusui-ini-yang-perlu-anda-ketahui">ibu menyusui</a>.</p>
             <a><img class="alignnone size-full wp-image-1788064" src="https://res.cloudinary.com/dk0z4ums3/image/upload/v1589160479/attached_image/virus-corona-0-alodokter.jpg" alt="Virus Corona - Alodokter" width="650" height="433"></a>
@@ -176,6 +173,9 @@ class BlogSeeder extends Seeder
               sources="&quot;\u003cp\u003eHuang, et al. (2020). Clinical features of patients infected with 2019 novel coronavirus in Wuhan, China. The Lancet, 6736(20), pp. 1-10.\n\u003cbr /\u003eWang, et al. (2020). A Novel Coronavirus Outbreak of Global Health Concern. The Lancet, 6736(20), pp. 1-4.\n\u003cbr /\u003eCenters for Disease Control and Prevention (2020). 2019 Novel Coronavirus, Wuhan, China.\n\u003cbr /\u003eWorld Health Organization (2020). Coronavirus.\n\u003cbr /\u003eWorld Health Organization (2020). Novel Coronavirus (2019-nCoV).\n\u003cbr /\u003eKeputusan Menteri Kesehatan Republik Indonesia Nomor HK.01.07/Menkes/413/2020 Tentang Pedoman Pencegahan dan Pengendalian Coronavirus Disease 2019 (COVID-19).\n\u003cbr /\u003eGugus Tugas Percepatan Penanganan COVID-19. (2020). Peta Sebaran \n\u003cbr /\u003eThe Centre of Evidence-Based Medicine develops, promote, and disseminates better evidence for healthcare CEBM. (2020) Global Covid-19 Case Fatality Rates.\n\u003cbr /\u003eCitroner, G. Healthline (2020). China Coronavirus Outbreak: CDC Issues Warning, Multiple Cases in U.S.\n\u003cbr /\u003eEvans, M. Patient (2020). Wuhan Coronavirus: What You Need to Know.\n\u003cbr /\u003eWebMD (2020). Coronavirus.\n\u003c/p\u003e&quot;"
             >
             </sources-post>',
+            'category' => 2,
+            'status' => 1,
+            'user' => 3,
         ]);
         blog::create([
             'title' => 'apa itu corona',
@@ -344,9 +344,9 @@ class BlogSeeder extends Seeder
             'title' => 'apa itu corona',
             'image' => 'public/images/post/2020-12-02/apa itu corona1606879222.jpg',
             'image_source' => 'pixabay.com',
-            'category' => 1,
+            'category' => 2,
             'status' => 1,
-            'user' => 3,
+            'user' => 1,
             'content' => '<p><strong>Virus Corona atau <em>severe acute respiratory syndrome</em> <em>coronavirus 2</em> (SARS-CoV-2) adalah virus yang menyerang sistem pernapasan. </strong><strong>Penyakit karena infeksi virus ini disebut COVID-19. </strong><strong>Virus </strong><strong>Corona </strong><strong>bisa menyebabkan </strong><strong>gangguan ringan pada </strong><strong>sistem pernapasan, infeksi paru-paru yang berat, hingga kematian.</strong></p>
             <p><em>Severe acute respiratory syndrome coronavirus 2</em> (SARS-CoV-2) yang lebih dikenal dengan nama virus Corona adalah jenis baru dari coronavirus yang menular ke manusia. Virus ini bisa menyerang siapa saja, seperti <a href="https://www.alodokter.com/alasan-mengapa-lansia-lebih-rentan-terhadap-virus-corona">lansia</a> (golongan usia lanjut), orang dewasa, <a href="https://www.alodokter.com/waspadai-infeksi-virus-corona-pada-anak">anak-anak</a>, dan <a href="https://www.alodokter.com/lindungi-bayi-anda-dari-virus-corona">bayi</a>, termasuk ibu hamil dan <a href="https://www.alodokter.com/infeksi-virus-corona-pada-ibu-menyusui-ini-yang-perlu-anda-ketahui">ibu menyusui</a>.</p>
             <a><img class="alignnone size-full wp-image-1788064" src="https://res.cloudinary.com/dk0z4ums3/image/upload/v1589160479/attached_image/virus-corona-0-alodokter.jpg" alt="Virus Corona - Alodokter" width="650" height="433"></a>
@@ -507,9 +507,9 @@ class BlogSeeder extends Seeder
             'title' => 'apa itu corona',
             'image' => 'public/images/post/2020-12-02/apa itu corona1606879222.jpg',
             'image_source' => 'pixabay.com',
-            'category' => 1,
-            'status' => 1,
-            'user' => 3,
+            'category' => 2,
+            'status' => 0,
+            'user' => 1,
             'content' => '<p><strong>Virus Corona atau <em>severe acute respiratory syndrome</em> <em>coronavirus 2</em> (SARS-CoV-2) adalah virus yang menyerang sistem pernapasan. </strong><strong>Penyakit karena infeksi virus ini disebut COVID-19. </strong><strong>Virus </strong><strong>Corona </strong><strong>bisa menyebabkan </strong><strong>gangguan ringan pada </strong><strong>sistem pernapasan, infeksi paru-paru yang berat, hingga kematian.</strong></p>
             <p><em>Severe acute respiratory syndrome coronavirus 2</em> (SARS-CoV-2) yang lebih dikenal dengan nama virus Corona adalah jenis baru dari coronavirus yang menular ke manusia. Virus ini bisa menyerang siapa saja, seperti <a href="https://www.alodokter.com/alasan-mengapa-lansia-lebih-rentan-terhadap-virus-corona">lansia</a> (golongan usia lanjut), orang dewasa, <a href="https://www.alodokter.com/waspadai-infeksi-virus-corona-pada-anak">anak-anak</a>, dan <a href="https://www.alodokter.com/lindungi-bayi-anda-dari-virus-corona">bayi</a>, termasuk ibu hamil dan <a href="https://www.alodokter.com/infeksi-virus-corona-pada-ibu-menyusui-ini-yang-perlu-anda-ketahui">ibu menyusui</a>.</p>
             <a><img class="alignnone size-full wp-image-1788064" src="https://res.cloudinary.com/dk0z4ums3/image/upload/v1589160479/attached_image/virus-corona-0-alodokter.jpg" alt="Virus Corona - Alodokter" width="650" height="433"></a>

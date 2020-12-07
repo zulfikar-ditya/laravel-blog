@@ -3,7 +3,7 @@
 @section('default-title', ' - User - Add')
 
 @section('default-content')
-    <div class="container mb-5 text-capitalize bg-white shadow p-5 rounded">
+    <div class="container mb-5 text-capitalize bg-white shadow p-5 rounded" style="margin-top: 70px">
         <div class="row justify-content-center">
             <div class="col-md-7">
             @if($errors -> any())

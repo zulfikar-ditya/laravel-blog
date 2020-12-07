@@ -3,7 +3,7 @@
 @section('default-title', '- Add')
 
 @section('default-content')
-    <div class="container bg-white shadow p-5 mb-5">
+    <div class="container bg-white shadow p-5 mb-5" style="margin-top: 70px">
         <div class="row justify-content-center">
             <div class="col-md-7">
                 @if($errors -> any())
@@ -47,6 +47,7 @@
                     <div class="form-group">
                         <label for="">content <span class="text-danger">*</span></label>
                         <textarea name="content" id="" cols="30" rows="10" class="form-control" required><p>Hello world</p></textarea>
+                        <small class="text-danger form-text">Use this <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer"> text editor</a> or <a href="https://www.sublimetext.com/" target="_blank" rel="noopener noreferrer">This</a> or <a href="https://atom.io/" target="_blank" rel="noopener noreferrer">this</a></small>
                     </div>
                     <hr class="border-info">
                     <div class="row justify-content-around">

@@ -3,7 +3,7 @@
 @section('default-title', '- Category - Edit')
 
 @section('default-content')
-    <div class="container bg-white shadow mb-5 p-5">
+    <div class="container bg-white shadow mb-5 p-5" style="margin-top: 70px">
         <div class="row justify-content-center">
             <div class="col-md-7">
                 <h2 class="text-center" style="letter-spacing: 10px">Edit Categpry</h2>
