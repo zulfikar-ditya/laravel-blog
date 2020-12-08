@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\UserController as UserAdmin;
 use App\Http\Controllers\admin\CategoryController as CategoryAdmin;
+use App\Http\COntrollers\admin\BlogController as BlogAdmin;
 
 use App\Http\Controllers\reporter\BlogController as BlogReporter;
 
@@ -47,11 +48,25 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('admin/category/change/{id}/', [CategoryAdmin::class, 'edit'])->name('admin-category-edit');
         Route::post('admin/category/change/{id}/', [CategoryAdmin::class, 'update'])->name('admin-category-edit');
 
+        // articles/ post
+        Route::get('admin/article/my-article', [BlogAdmin::class, 'MyPost'])->name('admin-blog-my-post');
+        Route::get('admin/article/list/', [BlogAdmin::class, 'index'])->name('admin-blog-list');
+        Route::get('admin/article/add/', [BlogAdmin::class, 'create'])->name('admin-blog-add');
+        Route::post('admin/article/add/', [BlogAdmin::class, 'store'])->name('admin-blog-add');
+        Route::get('admin/article/edit/{id}', [BlogAdmin::class, 'edit'])->name('admin-blog-edit');
+        Route::post('admin/article/edit/{id}', [BlogAdmin::class, 'update'])->name('admin-blog-edit');
+        Route::get('admin/article/hide/{id}', [BlogAdmin::class, 'ConfirmHidePost'])->name('admin-blog-hide');
+        Route::post('admin/article/hide/{id}', [BlogAdmin::class, 'HidePost'])->name('admin-blog-hide');
+        Route::get('admin/article/unhide/{id}', [BlogAdmin::class, 'ComfirmUnHidePost'])->name('admin-blog-unhide');
+        Route::post('admin/article/unhide/{id}', [BlogAdmin::class, 'UnHidePost'])->name('admin-blog-unhide');
+
         // superuser page
         Route::group(['middleware' => ['role:superuser']], function() {
             // user
             Route::get('admin/user/delete/{id}/', [UserAdmin::class, 'destroyConfirm'])->name('admin-user-delete');
             Route::post('admin/user/delete/{id}/', [UserAdmin::class, 'destroy'])->name('admin-user-delete');
+            Route::get('admin/article/delete/{id}', [BlogAdmin::class, 'ConfirmDestroy'])->name('admin-blog-delete');
+            Route::post('admin/article/delete/{id}', [BlogAdmin::class, 'destroy'])->name('admin-blog-delete');    
         });
 
         // staff page

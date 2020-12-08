@@ -84,15 +84,21 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item bg-pink">
-                                <a href="#" class="nav-link ml-3">
+                                <a href="{{route('admin-blog-add')}}" class="nav-link ml-3">
                                     <i class="fas fa-plus-square nav-icon"></i>
                                     <p>Add</p>
                                 </a>
                             </li>
                             <li class="nav-item bg-lime">
-                                <a href="#" class="nav-link ml-3">
+                                <a href="{{route('admin-blog-list')}}" class="nav-link ml-3">
                                     <i class="fas fa-list nav-icon"></i>
                                     <p>List</p>
+                                </a>
+                            </li>
+                            <li class="nav-item bg-primary">
+                                <a href="{{route ('admin-blog-my-post')}}" class="nav-link ml-3">
+                                    <i class="fas fa-stream nav-icon"></i>
+                                    <p>My Post</p>
                                 </a>
                             </li>
                         </ul>

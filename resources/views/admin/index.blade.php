@@ -43,19 +43,24 @@
             </div>
         </div>
 
-        <div class="col-md-3 bg-indigo p-4 rounded shadow mb-5">
+        <div class="col-md-3 bg-indigo p-4 rounded shadow">
             <i class="far fa-newspaper fa-2x"></i>
             <div class="mt-3">
                 <p class="lead">Articles</p>
                 <ul class="list-group border-none shadow">
-                    <a href="">
+                    <a href="{{route('admin-blog-add')}}">
                         <li class="list-group-item bg-indigo">
                             <span class="mr-1">Add </span> <i class="fa fa-plus-square"></i>
                         </li>
                     </a>
-                    <a href="">
+                    <a href="{{ route('admin-blog-list') }}">
                         <li class="list-group-item bg-indigo">
                             <span class="mr-1">List </span> <i class="fas fa-list"></i>
+                        </li>
+                    </a>
+                    <a href="{{ route('admin-blog-my-post') }}">
+                        <li class="list-group-item bg-indigo">
+                            <span class="mr-1">My Post </span>     <i class="fas fa-stream"></i></i>
                         </li>
                     </a>
                 </ul>
