@@ -7,6 +7,8 @@ use App\Http\COntrollers\admin\BlogController as BlogAdmin;
 
 use App\Http\Controllers\reporter\BlogController as BlogReporter;
 
+use App\Http\Controllers\homeController as Home;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,9 +20,10 @@ use App\Http\Controllers\reporter\BlogController as BlogReporter;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [Home::class, 'index'])->name('index');
+Route::get('post/{id}', [Home::class, 'PostDetail'])->name('PostDetail');
+Route::get('category/', [Home::class, 'CategoryList'])->name('category');
+Route::get('category/post/{id}', [Home::class, 'PostByCategory'])->name('PostByCategory');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
