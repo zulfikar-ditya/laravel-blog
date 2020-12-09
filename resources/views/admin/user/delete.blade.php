@@ -1,6 +1,6 @@
 @extends('admin.base')
 
-@section('default-title', '- User - Delete')
+@section('default-title', '- User - Delete - '.ucwords($data['name']))
 
 @section('default-content')
     <div class="container bg-white shadow p-5" style="margin-top: 70px">

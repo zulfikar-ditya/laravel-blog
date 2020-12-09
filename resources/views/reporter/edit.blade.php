@@ -1,6 +1,6 @@
 @extends('reporter.base')
 
-@section('default-title', '- Edit Post')
+@section('default-title', '- Edit Post - '.ucwords($data[0]['title']))
 
 @section('default-content')
 <div class="container bg-white shadow p-5" style="margin-top: 70px">

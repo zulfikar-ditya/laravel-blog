@@ -1,6 +1,6 @@
 @extends('admin.base')
 
-@section('default-title', '- Article - Hide Article')
+@section('default-title', '- Article - Hide Article - '.ucwords($data['title']))
 
 
 @section('default-content')

@@ -1,6 +1,6 @@
 @extends('admin.base')
 
-@section('default-title', '- Article - Edit')
+@section('default-title', '- Article - Edit - '.ucwords($data[0]['title']))
 
 @section('default-content')
 <div class="container bg-white shadow p-5" style="margin-top: 70px">

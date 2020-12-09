@@ -35,6 +35,8 @@ class homeController extends Controller
         if ($data['status'] == false) {
             return abort(404);
         }
+        $data['viewer'] += 1;
+        $data->save();
         $relatedPost = blog::where([
             ['status', '=', true],
             ['category', '=', $data['category']]
@@ -49,6 +51,9 @@ class homeController extends Controller
         if ($request->search) {
             $search = $request->search;
             $data = category::where('name', 'like', '%'.$search.'%')->orderBy('id', 'desc')->paginate(10);
+        }
+        foreach ($data as $item) {
+            $item->AutoUpdateFunction;
         }
         return view('home.category', ['data' => $data, 'search' => $search]);
     }

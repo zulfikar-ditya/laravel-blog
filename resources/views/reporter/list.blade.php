@@ -4,6 +4,8 @@
 
 @section('default-content')
     <div class="contaiher bg-white shadow p-5 mb-5 text-capitalize" style="margin-top: 70px">
+        <h2 class="text-center" style="letter-spacing: 10px">list Post</h2>
+        <hr class="text-center border-info w-50">
         @if (Session::has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <span>Success Add data</span>

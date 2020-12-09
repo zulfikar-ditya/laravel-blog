@@ -4,6 +4,8 @@
 
 @section('default-content')
 <div class="container mb-5 bg-white shadow p-5 text-capitalize" style="margin-top: 70px">
+    <h2 class="text-center" style="letter-spacing: 10px">Categories List</h2>
+    <hr class="text-center border-info w-50">
     @if (Session::has('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <span class="lead">Success Add Data</span>

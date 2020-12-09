@@ -51,7 +51,7 @@
                           <a class="dropdown-item" href="{{route('adminIndex')}}">admin</a>
                           @endif
                           @if (Auth::user()->hasRole('reporter'))
-                          <a class="dropdown-item" href="route('ReporterIndex')">reporter</a>
+                          <a class="dropdown-item" href="{{route('ReporterIndex')}}">reporter</a>
                           @endif
 
                           <form action="{{route('logout')}}" method="post" class="dropdown-item">

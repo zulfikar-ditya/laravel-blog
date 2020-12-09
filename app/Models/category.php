@@ -12,4 +12,17 @@ class category extends Model
     public function getUser() {
         return $this->hasOne('App\Models\User', 'user');
     }
+
+    public function getAutoUpdateFunctionAttribute() {
+        if ($this->is_auto_update == true) {
+            $create = $this->created_at->format('Y-m-d');
+            $today = date('Y-m-d');
+            if (strtotime($today) > strtotime($create)) {
+                $this->is_new = false;
+                $this->is_trending = false;
+                $this->save();
+            }
+        }
+        return $this;
+    }
 }

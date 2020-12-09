@@ -8,7 +8,7 @@
             <i class="fas fa-eye fa-2x"></i>
             <div class="my-3">
                 <p class="lead">Viewer</p>
-                <p class="font-weight-normal">234</p>
+                <p class="font-weight-normal">{{$view}}</p>
             </div>
         </div>
     </div>
@@ -24,16 +24,23 @@
                 <th>image</th>
                 <th>create at</th>
                 <th>category</th>
+                <th>viewer</th>
+                <th>created at</th>
             </thead>
-            @for ($i = 0; $i < 5; $i++)
-            <tr>
-                <th>{{$i}}</th>
-                <td>test</td>
-                <td>image</td>
-                <td>create at</td>
-                <td>category</td>
-            </tr>
-            @endfor
+            <tbody>
+                @foreach ($data as $item)
+                <tr>
+                    <th>{{$item->id}}</th>
+                    <td><a href="{{ route('reporter-edit-post', ['id' => $item['id'] ]) }}">{{$item->title}}</a></td>
+                    <td><a href="{{ asset($item->image) }}" target="_blank"><span class="mr-2">Go</span><i
+                                class="fas fa-external-link-alt"></i></a></td>
+                    <td>{{$item->image_source}}</td>
+                    <td>{{$item->GetCategory['name']}}</td>
+                    <td>{{$item->viewer}}</td>
+                    <td>{{$item->created_at->format('Y-m-d')}}</td>
+                </tr>
+                @endforeach
+            </tbody>
         </table>
     </div>
 </div>

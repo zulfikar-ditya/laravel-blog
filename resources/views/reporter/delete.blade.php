@@ -1,6 +1,6 @@
 @extends('reporter.base')
 
-@section('default-title', 'Delete Confirm')
+@section('default-title', 'Delete Confirm - .ucwords($data['title'])')
 
 @section('default-content')
 <div class="container bg-white shadow p-5 text-capitalize" style="margin-top: 70px">

@@ -18,7 +18,19 @@ class BlogController extends Controller
      */
     public function base()
     {
-        return view('reporter.index');
+        $data = blog::where([
+            ['status', '=', '1'],
+            ['user', '=', Auth::user()->id],
+        ])->orderBy('id', 'desc')->paginate(5);
+        $Alldata = blog::where([
+            ['user', '=', Auth::user()->id],
+        ])->orderBy('id', 'desc')->paginate(5);
+        $view = 0;
+        foreach ($Alldata as $item) {
+            $view += $item['viewer'];
+        }
+
+        return view('reporter.index', ['data' => $data, 'view' => $view]);
     }
 
     public function index(Request $request) 
@@ -26,6 +38,9 @@ class BlogController extends Controller
         $search = '';
         $filter = '';
         $category = category::all();
+        foreach ($category as $item) {
+            $item->AutoUpdateFunction;
+        }
         $data = blog::where([
                             ['user', '=', Auth::user()->id],
                             ['status', '=', '1']

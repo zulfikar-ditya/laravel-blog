@@ -21,6 +21,9 @@ class BlogController extends Controller
     {
         $data = blog::orderBy('id', 'desc')->paginate(50);
         $category = category::all();
+        foreach ($category as $item) {
+            $item->AutoUpdateFunction;
+        }
         $categoryFilter = '';
         $search = '';
         $filter = '';
@@ -57,6 +60,9 @@ class BlogController extends Controller
     public function MyPost(Request $request) {
         $data = blog::where('user', '=', Auth::user()->id)->paginate(50);
         $category = category::all();
+        foreach ($category as $item) {
+            $item->AutoUpdateFunction;
+        }
         $filterStatusData = [
             'StatusTrue'=>[
                 'status' => 'Status True',
@@ -109,6 +115,9 @@ class BlogController extends Controller
     public function create()
     {
         $category = category::all();
+        foreach ($category as $item) {
+            $item->AutoUpdateFunction;
+        }
         return view('admin.blog.add', ['category' => $category]);
     }
 
@@ -169,6 +178,9 @@ class BlogController extends Controller
             return abort(404);
         }
         $category = category::all();
+        foreach ($category as $item) {
+            $item->AutoUpdateFunction;
+        }
         return view('admin.blog.edit', ['data' => $data, 'category' => $category]);
     }
 

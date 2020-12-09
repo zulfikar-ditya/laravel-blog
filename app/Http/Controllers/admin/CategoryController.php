@@ -18,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $data = DB::table('categories')->paginate(50);
+        $data = category::paginate(50);
         $query = '';
         $filter = '';
         if ($request->search) {
@@ -50,6 +50,9 @@ class CategoryController extends Controller
                 $filter = 'Auto Update = False';
                 $data = category::where('is_auto_update', '=', '0')->paginate(50);
             }
+        }
+        foreach ($data as $item) {
+            $item->AutoUpdateFunction;
         }
         return view('admin.category.list', [
             'data' => $data,
@@ -123,6 +126,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $data = category::findOrFail($id);
+        $data->AutoUpdateFunction;
         return view('admin.category.edit', ['data' => $data]);
     }
 
