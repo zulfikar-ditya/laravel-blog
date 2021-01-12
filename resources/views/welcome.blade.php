@@ -43,24 +43,24 @@
                     @if (Auth::user())
                     <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          {{Auth::User()->name}}
+                            {{Auth::User()->name}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a>
-                          @if (Auth::user()->hasRole('superuser|staff'))
-                          <a class="dropdown-item" href="{{route('adminIndex')}}">admin</a>
-                          @endif
-                          @if (Auth::user()->hasRole('reporter'))
-                          <a class="dropdown-item" href="{{route('ReporterIndex')}}">reporter</a>
-                          @endif
+                            <a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a>
+                            @if (Auth::user()->hasRole('superuser|staff'))
+                            <a class="dropdown-item" href="{{route('adminIndex')}}">admin</a>
+                            @endif
+                            @if (Auth::user()->hasRole('reporter'))
+                            <a class="dropdown-item" href="{{route('ReporterIndex')}}">reporter</a>
+                            @endif
 
-                          <form action="{{route('logout')}}" method="post" class="dropdown-item">
-                              @csrf
-                              <button type="submit" class="btn btn-outline-danger">logout <i class="fas fa-sign-out-alt"></i></button>
-                          </form>
+                            <form action="{{route('logout')}}" method="post" class="dropdown-item">
+                                @csrf
+                                <button type="submit" class="btn btn-outline-danger">logout <i class="fas fa-sign-out-alt"></i></button>
+                            </form>
 
                         </div>
-                      </li>
+                    </li>
                     @else
                     <li class="nav-item">
                         <a class="nav-link active" href="{{route('login')}}">Login <i class="fas fa-sign-in-alt"></i></a>

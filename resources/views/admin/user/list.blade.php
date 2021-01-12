@@ -39,10 +39,10 @@
       </div>
     @endif
     <div class="row my-3">
-        <div class="col-2">
+        <div class="col-md m-2">
             <a href="{{ route('admin-user-add') }}" class="btn btn-outline-danger">Add <i class="fas fa-plus"></i></a>
         </div>
-        <div class="col-10">
+        <div class="col-md m-2">
             <form action="" method="get" class="form-inline">
                 <label for="" class="mr-1 p">Filter: </label>
                 <select name="filter" id="" class="form-control mr-3" required>
@@ -74,6 +74,7 @@
                 <th>Email</th>
                 <th>Address</th>
                 <th>Phone</th>
+                <th>Level User</th>
             </thead>
             <tbody>
                 @foreach ($data as $item)
@@ -83,6 +84,11 @@
                     <td>{{$item->email}}</td>
                     <td>{{$item->address}}</td>
                     <td>{{$item->phonenumber}}</td>
+                    <td>
+                    @foreach ($item->getRoleNames() as $role)
+                        {{$role}}, 
+                    @endforeach
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

@@ -27,7 +27,7 @@ class UserController extends Controller
             $search = str_replace('$query$', $query, '%$query$%');
             $data = User::where('name', 'like', $search)->paginate(50);
         } else {
-             $data = DB::table('users')->paginate(50);
+            $data = User::paginate(50);
         }
         if($request->filter) {
             if($request->filter == 1) {
@@ -153,6 +153,23 @@ class UserController extends Controller
             $data->email = $request->email;
             $data->address = $request->address;
             $data->phonenumber = $request->phonenumber;
+            if (count($data->getRoleNames()) != 0) {
+                $data->removeRole($data->getRoleNames()[0]);
+            }
+            if ($request->role) {
+                if($request->role == 1) {
+                    $data->assignRole('superuser');
+                } 
+                else if($request->role == 2) {
+                    $data->assignRole('staff');
+                }
+                else if($request->role == 3) {
+                    $data->assignRole('reporter');
+                } 
+                else if($request->role == 4) {
+                    $data->assignRole('user');
+                }
+            }
             $request->session()->flash('update-success');
         }
         else if ($request->savePassword) {
