@@ -10,47 +10,47 @@
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <span>Success Add data</span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true">&times;</span>
             </button>
-          </div>
+        </div>
         @endif
         @if (Session::has('success-update'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <span>Success Update data</span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true">&times;</span>
             </button>
-          </div>
+        </div>
         @endif
         @if (Session::has('hide-success'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <span>Success Hide Data</span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true">&times;</span>
             </button>
-          </div>
+        </div>
         @endif
         @if (Session::has('un-hide-success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <span>Success Un Hide Data</span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true">&times;</span>
             </button>
-          </div>
+        </div>
         @endif
         @if (Session::has('delete'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <span>Success delete data</span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true">&times;</span>
             </button>
-          </div>
+        </div>
         @endif
         <div class="row my-3">
-            <div class="col-2">
+            <div class="col-md">
                 <a href="{{route('admin-blog-add')}}" class="btn btn-outline-danger">Add <i class="fas fa-plus"></i></a>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <form action="" method="get" class="form-inline">
                     <div class="form-inline">
                         <label for="" class="mr-3">Status </label>
@@ -63,7 +63,7 @@
                     <button type="submit" class="btn btn-outline-info">Go <i class="fas fa-external-link-alt"></i></button>
                 </form>
             </div>
-            <div class="col">
+            <div class="col-md">
                 <form action="" method="get">
                     <div class="form-inline">
                         <label for="" class="mr-3">Filter Category: </label>

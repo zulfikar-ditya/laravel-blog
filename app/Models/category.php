@@ -10,7 +10,7 @@ class category extends Model
     use HasFactory;
 
     public function getUser() {
-        return $this->hasOne('App\Models\User', 'user');
+        return $this->belongsTo('\App\Models\User', 'user');
     }
 
     public function getAutoUpdateFunctionAttribute() {

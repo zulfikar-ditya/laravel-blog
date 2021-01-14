@@ -23,11 +23,11 @@
     </div>
     @endif
     <div class="row my-3">
-        <div class="col-2">
+        <div class="col-md">
             <a href="{{ route('admin-category-add') }}" class="btn btn-outline-danger">Add <i
                     class="fas fa-plus"></i></a>
         </div>
-        <div class="col-10">
+        <div class="col-md">
             <form action="" method="get" class="form-inline text-capitalize">
                 <label for="" class="mr-2">Filter <span class="text-danger">*</span> </label>
                 <select name="filter" id="" class="form-control mr-2">
@@ -85,7 +85,7 @@
                     @else
                     <td class="text-danger"><i class="fas fa-times"></i></td>
                     @endif
-                    <td>{{$item->user}}</td>
+                    <td>{{$item->getUser->name}}</td>
                     <td><a href="{{ asset($item->image) }}" target="_blank"><span class="mr-2">Go</span><i
                                 class="fas fa-external-link-alt"></i></a></td>
                 </tr>

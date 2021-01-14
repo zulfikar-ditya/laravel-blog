@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 use App\models\category;
 
@@ -22,8 +23,8 @@ class CategoryController extends Controller
         $query = '';
         $filter = '';
         if ($request->search) {
-            $query = str_replace('$query$', $request->search, '%$query$%');
-            $data = category::where('name', 'like', $query)->paginate(50);
+            $query = $request->search;
+            $data = category::where('name', 'like', '%'.$query.'%')->paginate(50);
         }
         if ($request->filter) {
             if ($request->filter == 'NewTrue'){
@@ -145,8 +146,9 @@ class CategoryController extends Controller
         ]);
         if($request->hasFile('image') != null) {
             $request->validate([
-            'image' => 'image|mimes:jpeg,png,jpg,',
+                'image' => 'image|mimes:jpeg,png,jpg,',
             ]);
+            File::delete($data->image);
             $date = date('Y-m-d');
             $place = str_replace('$date$', $date, 'public/images/categories/$date$/');
             $name = $request->name.time() . '.' .$request->file('image')->getClientOriginalExtension();

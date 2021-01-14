@@ -5,7 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\Auth;
-use Illuminate\Support\facades\DB;
+use Illuminate\Support\Facades\File;
 
 use App\Models\blog;
 use App\Models\category;
@@ -170,13 +170,7 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        $data = blog::where([
-            ['id', '=', $id],
-        ])
-        ->get();
-        if (count($data) == 0) {
-            return abort(404);
-        }
+        $data = blog::findOrFail($id);
         $category = category::all();
         foreach ($category as $item) {
             $item->AutoUpdateFunction;
@@ -197,30 +191,25 @@ class BlogController extends Controller
             'title' => 'max:100',
             'image_source' => 'max:50',
         ]);
-        $data = blog::where([
-            ['id', '=', $id],
-        ])
-        ->get();
-        if (count($data) == 0) {
-            return abort(404);
-        }
-        $data[0]['title'] = $request->title;
-        $data[0]['image_source'] = $request->image_source;
-        $data[0]['category'] = $request->category;
-        $data[0]['content'] = $request->content;
+        $data = blog::findOrFail($id);
+        $data['title'] = $request->title;
+        $data['image_source'] = $request->image_source;
+        $data['category'] = $request->category;
+        $data['content'] = $request->content;
         if($request->hasFile('image') != null) {
             $request->validate([
             'image' => 'image|mimes:jpeg,png,jpg,',
             ]);
+            File::delete($data['image']);
             $date = date('Y-m-d');
             $place = str_replace('$date$', $date, 'public/images/post/$date$/');
             $name = $request->title.time().'.'.$request->file('image')->getClientOriginalExtension();
             // move image
             $request->file('image')->move(public_path($place), $name);
-            $data[0]['image']->image = $place.$name;
+            $data->image = $place.$name;
 
         }
-        $data['0']->save();
+        $data->save();
         $request->session()->flash('success-update');
         return redirect(route('admin-blog-list'));
     }

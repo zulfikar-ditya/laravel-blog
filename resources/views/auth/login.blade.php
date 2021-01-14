@@ -38,7 +38,7 @@
         
                     <div class="row flex-column items-center justify-end mt-4">
         
-                        <input type="submit" value="Register" class="btn btn-outline-info mb-3">
+                        <input type="submit" value="Login" class="btn btn-outline-info mb-3">
         
                         @if (Route::has('password.request'))
                             <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">

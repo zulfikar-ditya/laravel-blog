@@ -6,7 +6,7 @@
     <div class="container bg-white shadow mb-5 p-5" style="margin-top: 70px">
         <div class="row justify-content-center">
             <div class="col-md-7">
-                <h2 class="text-center" style="letter-spacing: 10px">Edit Categpry</h2>
+                <h2 class="text-center" style="letter-spacing: 10px">Edit Category</h2>
                 <hr class="border-info">
                 <form action="" method="post" enctype="multipart/form-data">
                     @csrf
@@ -19,28 +19,34 @@
                             <label for="">New <span class="text-danger">*</span></label>
                             <select name="new" id="" class="form-control" required>
                                 <option value="" selected>-------</option>
-                                <option value="1">True</option>
-                                <option value="0">False</option>
+                                @if ($data->is_new)
+                                <option value="1" selected>True</option>
+                                @else
+                                <option value="0" selected>False</option>
+                                @endif
                             </select>
-                            <small class="form-text text-danger">Select Again</small>
                         </div>
                         <div class="form-group">
                             <label for="">Trending <span class="text-danger">*</span></label>
                             <select name="trending" id="" class="form-control" required>
                                 <option value="" selected>-------</option>
-                                <option value="1">True</option>
-                                <option value="0">False</option>
+                                @if ($data->id_trending)
+                                <option value="1" selected>True</option>
+                                @else
+                                <option value="0" selected>False</option>
+                                @endif
                             </select>
-                            <small class="form-text text-danger">Select Again</small>
                         </div>
                         <div class="form-group">
                             <label for="">Auto Update <span class="text-danger">*</span></label>
                             <select name="autoUpdate" id="" class="form-control" required>
                                 <option value="" selected>-------</option>
-                                <option value="1">True</option>
-                                <option value="0">False</option>
+                                @if ($data->is_auto_update)
+                                <option value="1" selected>True</option>
+                                @else
+                                <option value="0" selected>False</option>
+                                @endif
                             </select>
-                            <small class="form-text text-danger">Select Again</small>
                         </div>
                     </div>
                     <div class="form-row justify-content-center ">
@@ -53,7 +59,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="form-text"><a href="{{ asset($data->image) }}" target="_blank">Image</a></p>
+                    <p class="form-text">Previous <a href="{{ asset($data->image) }}" target="_blank">Image</a></p>
                     <hr class="border-info">
                     <div class="row justify-content-center">
                         <input type="submit" value="Save" name="add" class="btn btn-outline-info">
