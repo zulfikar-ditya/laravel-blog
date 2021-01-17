@@ -18,10 +18,8 @@
                 aria-controls="pills-contact" aria-selected="false">View</a>
         </li>
     </ul>
-</div>
-<div class="tab-content" id="pills-tabContent">
-    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-        <div class="container bg-white shadow my-5 p-5 text-capitalize" style="margin-top: 70px" id="edit">
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
             <div class="row justify-content-center">
                 <div class="col-md-7">
                     <h2 class="text-center" style="letter-spacing: 10px">Edit Post</h2>
@@ -63,10 +61,13 @@
                             <select name="category" id="" class="form-control" required>
                                 <option value="" selected>--------</option>
                                 @foreach ($category as $item)
+                                @if ($data[0]['category'] == $item['id'])
+                                <option value="{{$item['id']}}" selected>{{$item['name']}}</option>
+                                @else
                                 <option value="{{$item['id']}}">{{$item['name']}}</option>
+                                @endif
                                 @endforeach
                             </select>
-                            <small class="text-danger">Select again</small>
                         </div>
                         <div class="form-group">
                             <label for="">Content <span class="text-danger">*</span></label>
@@ -78,6 +79,14 @@
                                     rel="noopener noreferrer">This</a> or <a href="https://atom.io/" target="_blank"
                                     rel="noopener noreferrer">this</a></small>
                         </div>
+                        <div class="form-group">
+                            <label for="">Created At <span class="text-danger">*</span></label>
+                            <input type="datetime" class="form-control" name="created-at" id="" value="{{$data[0]['created_at']}}" disabled readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Updated At <span class="text-danger">*</span></label>
+                            <input type="datetime" class="form-control" name="created-at" id="" value="{{$data[0]['updated_at']}}" disabled readonly>
+                        </div>
                         <hr class="border-info">
                         <div class="row justify-content-center">
                             <input type="submit" value="Save" class="btn btn-outline-info">
@@ -86,9 +95,7 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-        <div class="container bg-white shadow mb-5 p-5 text-center" id="delete" style="margin-top: 70px">
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
             <div class="row justify-content-center">
                 <div class="col-md-7 text-center">
                     <h2 style="letter-spacing: 10px">Delete Post</h2>
@@ -97,10 +104,9 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-        <div class="container bg-white shadow mb-5 p-4" id="preview" style="margin-top: 70px">
+        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
             <h2 class="text-center">View</h2>
+            <hr class="border-info text-center w-50">
             {{-- preview --}}
             <div class="container">
                 <h2 class="text-capitalize">{{$data[0]['title']}}</h2>
@@ -109,7 +115,7 @@
                 <img src="{{asset($data[0]['image'])}}" alt="{{$data[0]['title']}}" class="img-fluid mt-3">
                 {{-- content --}}
                 <span>
-                    {{!! $data[0]['content'] !!}}
+                    {!! $data[0]['content'] !!}
                 </span>
                 {{-- content --}}
             </div>

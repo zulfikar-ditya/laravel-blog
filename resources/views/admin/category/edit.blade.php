@@ -60,6 +60,14 @@
                         </div>
                     </div>
                     <p class="form-text">Previous <a href="{{ asset($data->image) }}" target="_blank">Image</a></p>
+                    <div class="form-group">
+                        <label for="">Created At <span class="text-danger">*</span></label>
+                        <input type="datetime" class="form-control" name="created-at" id="" value="{{$data['created_at']}}" disabled readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Updated At <span class="text-danger">*</span></label>
+                        <input type="datetime" class="form-control" name="created-at" id="" value="{{$data['updated_at']}}" disabled readonly>
+                    </div>
                     <hr class="border-info">
                     <div class="row justify-content-center">
                         <input type="submit" value="Save" name="add" class="btn btn-outline-info">

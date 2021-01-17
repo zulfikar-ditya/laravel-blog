@@ -93,6 +93,14 @@
                             @endif
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="">Created At <span class="text-danger">*</span></label>
+                        <input type="datetime" class="form-control" name="created-at" id="" value="{{$data['created_at']}}" disabled readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Updated At <span class="text-danger">*</span></label>
+                        <input type="datetime" class="form-control" name="created-at" id="" value="{{$data['updated_at']}}" disabled readonly>
+                    </div>
 
                     <hr class="border-info">
 

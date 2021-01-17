@@ -10,40 +10,42 @@
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <span>Success Add data</span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true">&times;</span>
             </button>
-          </div>
+        </div>
         @endif
         @if (Session::has('success-update'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <span>Success update data</span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true">&times;</span>
             </button>
-          </div>
+        </div>
         @endif
         @if (Session::has('delete'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <span>Success delete data</span>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true">&times;</span>
             </button>
-          </div>
+        </div>
         @endif
         <div class="row my-3">
-            <div class="col-2">
+            <div class="col-md">
                 <a href="{{route('reporter-add-post')}}" class="btn btn-outline-danger">Add <i class="fas fa-plus"></i></a>
             </div>
-            <form action="" method="get" class="form-inline">
-                <label for="" class="mr-3">Filter: </label>
-                <select name="filter" id="" class="form-control mr-3">
-                    <option value="" selected>----------</option>
-                    @foreach ($category as $item)
-                    <option value="{{$item['id']}}">{{$item['name']}}</option>
-                    @endforeach
-                </select>
-                <button type="submit" class="btn btn-outline-info">Go <i class="fas fa-external-link-alt"></i></button>
-            </form>
+            <div class="col-md">
+                <form action="" method="get" class="form-inline">
+                    <label for="" class="mr-3">Filter: </label>
+                    <select name="filter" id="" class="form-control mr-3">
+                        <option value="" selected>----------</option>
+                        @foreach ($category as $item)
+                        <option value="{{$item['id']}}">{{$item['name']}}</option>
+                        @endforeach
+                    </select>
+                    <button type="submit" class="btn btn-outline-info">Go <i class="fas fa-external-link-alt"></i></button>
+                </form>
+            </div>
         </div>
         @if ($search != '')
         <div class="my-4">

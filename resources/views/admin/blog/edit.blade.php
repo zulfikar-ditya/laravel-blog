@@ -94,6 +94,14 @@
                                 <a href="https://www.sublimetext.com/" target="_blank" rel="noopener noreferrer">This</a> or <a href="https://atom.io/" target="_blank" rel="noopener noreferrer">this</a>
                             </small>
                         </div>
+                        <div class="form-group">
+                            <label for="">Created At <span class="text-danger">*</span></label>
+                            <input type="datetime" class="form-control" name="created-at" id="" value="{{$data['created_at']}}" disabled readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Updated At <span class="text-danger">*</span></label>
+                            <input type="datetime" class="form-control" name="created-at" id="" value="{{$data['updated_at']}}" disabled readonly>
+                        </div>
                         <hr class="border-info">
                         <div class="row justify-content-center">
                             <input type="submit" value="Save" class="btn btn-outline-info">

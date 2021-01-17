@@ -5,7 +5,7 @@ namespace App\Http\Controllers\reporter;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\support\Facades\Auth;
-use Illuminate\support\Facades\DB;
+use Illuminate\support\Facades\File;
 
 use App\Models\category;
 use App\Models\blog;
@@ -179,12 +179,13 @@ class BlogController extends Controller
             $request->validate([
             'image' => 'image|mimes:jpeg,png,jpg,',
             ]);
+            File::delete($data[0]->image);
             $date = date('Y-m-d');
             $place = str_replace('$date$', $date, 'public/images/post/$date$/');
             $name = $request->title.time().'.'.$request->file('image')->getClientOriginalExtension();
             // move image
             $request->file('image')->move(public_path($place), $name);
-            $data[0]['image']->image = $place.$name;
+            $data[0]['image'] = $place.$name;
 
         }
         $data['0']->save();
@@ -210,6 +211,7 @@ class BlogController extends Controller
         }
         return view('reporter.delete', ['data' => $data[0] ]);
     }
+    
     public function destroy(Request $request, $id)
     {
         $data = blog::where([
