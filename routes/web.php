@@ -54,14 +54,17 @@ Route::group(['middleware' => ['auth']], function() {
         // articles/ post
         Route::get('admin/article/my-article', [BlogAdmin::class, 'MyPost'])->name('admin-blog-my-post');
         Route::get('admin/article/list/', [BlogAdmin::class, 'index'])->name('admin-blog-list');
-        Route::get('admin/article/add/', [BlogAdmin::class, 'create'])->name('admin-blog-add');
-        Route::post('admin/article/add/', [BlogAdmin::class, 'store'])->name('admin-blog-add');
+        Route::get('admin/article/add/{id}', [BlogAdmin::class, 'create'])->name('admin-blog-add');
+        Route::post('admin/article/add/{id}', [BlogAdmin::class, 'store'])->name('admin-blog-add');
+        Route::get('admin/article/edit-category/{id}', [BlogAdmin::class, 'updateCategory'])->name('admin-blog-edit-category');
+        Route::post('admin/article/edit-category/{id}', [BlogAdmin::class, 'saveUpdateCategory'])->name('admin-blog-edit-category');
         Route::get('admin/article/edit/{id}', [BlogAdmin::class, 'edit'])->name('admin-blog-edit');
         Route::post('admin/article/edit/{id}', [BlogAdmin::class, 'update'])->name('admin-blog-edit');
         Route::get('admin/article/hide/{id}', [BlogAdmin::class, 'ConfirmHidePost'])->name('admin-blog-hide');
         Route::post('admin/article/hide/{id}', [BlogAdmin::class, 'HidePost'])->name('admin-blog-hide');
         Route::get('admin/article/unhide/{id}', [BlogAdmin::class, 'ComfirmUnHidePost'])->name('admin-blog-unhide');
         Route::post('admin/article/unhide/{id}', [BlogAdmin::class, 'UnHidePost'])->name('admin-blog-unhide');
+        Route::get('admin/article/select-category', [BlogAdmin::class, 'SelectCategory'])->name('admin-blog-select-category');
 
         // superuser page
         Route::group(['middleware' => ['role:superuser']], function() {
@@ -82,8 +85,11 @@ Route::group(['middleware' => ['auth']], function() {
     Route::group(['middleware' => ['role:reporter']], function() {
         Route::get('reporter/', [BlogReporter::class, 'base'])->name('ReporterIndex');
         Route::get('reporter/list', [BlogReporter::class, 'index'])->name('reporter-list-post');
-        Route::get('reporter/add', [BlogReporter::class, 'create'])->name('reporter-add-post');
-        Route::post('reporter/add', [BlogReporter::class, 'store'])->name('reporter-add-post');
+        Route::get('reporter/select-catategory', [BlogReporter::class, 'SelectCategory'])->name('reporter-select-category');
+        Route::get('reporter/add/{id}', [BlogReporter::class, 'create'])->name('reporter-add-post');
+        Route::post('reporter/add/{id}', [BlogReporter::class, 'store'])->name('reporter-add-post');
+        Route::get('reporter/edit-category/{id}', [BlogReporter::class, 'updateCategory'])->name('reporter-edit-category-post');
+        Route::post('reporter/edit-category/{id}', [BlogReporter::class, 'saveUpdateCategory'])->name('reporter-edit-category-post');
         Route::get('reporter/edit/{id}', [BlogReporter::class, 'edit'])->name('reporter-edit-post');
         Route::post('reporter/edit/{id}', [BlogReporter::class, 'update'])->name('reporter-edit-post');
         Route::get('reporter/delete/{id}', [BlogReporter::class, 'destroyConfirm'])->name('reporter-delete-post');

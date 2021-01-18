@@ -84,7 +84,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item bg-pink">
-                                <a href="{{route('admin-blog-add')}}" class="nav-link ml-3">
+                                <a href="{{route('admin-blog-select-category')}}" class="nav-link ml-3">
                                     <i class="fas fa-plus-square nav-icon"></i>
                                     <p>Add</p>
                                 </a>
@@ -117,7 +117,7 @@
 
                         <ul class="nav nav-treeview">
                             <li class="nav-item bg-pink">
-                                <a href="{{ route('reporter-add-post') }}" class="nav-link ml-3">
+                                <a href="{{ route('reporter-select-category') }}" class="nav-link ml-3">
                                     <i class="fas fa-plus-square nav-icon"></i>
                                     <p>Add</p>
                                 </a>

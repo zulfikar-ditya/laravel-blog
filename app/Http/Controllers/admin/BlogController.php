@@ -107,17 +107,32 @@ class BlogController extends Controller
 
     }
 
+    public function SelectCategory(Request $request) 
+    {
+        $data = category::orderBy('id', 'desc')->paginate(20);
+        $search = '';
+        if ($request->search) {
+            $search = $request->search;
+            $data = category::where('name', 'like', '%'.$search.'%')->orderBy('id', 'desc')->paginate(20);
+        }
+        $dataCount = count($data);
+        return view('admin.blog.select-category', [
+            'data' => $data,
+            'dataCount' => $dataCount,
+            'search' => $search,
+            ]
+        );
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        $category = category::all();
-        foreach ($category as $item) {
-            $item->AutoUpdateFunction;
-        }
+        $category = category::findOrFail($id);
+        $category->getAutoUpdate;
         return view('admin.blog.add', ['category' => $category]);
     }
 
@@ -127,7 +142,7 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $request->validate([
             'title' => 'max:100',
@@ -138,7 +153,7 @@ class BlogController extends Controller
         $newData->title = $request->title;
         $newData->image_source = $request->image_source;
         $newData->content = $request->content;
-        $newData->category = $request->category;
+        $newData->category = category::findOrFail($id)->id;
         $newData->user = Auth::user()->id;
         $date = date('Y-m-d');
         $place = str_replace('$date$', $date, 'public/images/post/$date$/');
@@ -171,11 +186,38 @@ class BlogController extends Controller
     public function edit($id)
     {
         $data = blog::findOrFail($id);
-        $category = category::all();
-        foreach ($category as $item) {
-            $item->AutoUpdateFunction;
-        }
+        $category = category::findOrFail($data->category);
         return view('admin.blog.edit', ['data' => $data, 'category' => $category]);
+    }
+
+    public function updateCategory(Request $request, $id)
+    {
+        $blog = blog::findOrFail($id);
+        $category = category::orderBy('id', 'desc')->paginate(20);
+        $search = '';
+        $dataCount = '';
+        if($request->search) {
+            $search = $request->search;
+            $category = category::where('name', 'like', '%'.$search.'%')->orderBy('id', 'desc')->paginate(20);
+            $dataCount = count($category);
+        }
+        return view('admin.blog.update-category', 
+            [
+                'data' => $category,
+                'blog' => $blog,
+                'search' => $search,
+                'dataCount' => $dataCount
+            ]
+        );
+    }
+
+    public function saveUpdateCategory(Request $request, $id)
+    {
+        $blog = blog::findOrFail($id);
+        $blog['category'] = $request->category;
+        $blog->save();
+        $request->session()->flash('success-update');
+        return redirect(route('admin-blog-list'));
     }
 
     /**
@@ -198,7 +240,7 @@ class BlogController extends Controller
         $data['content'] = $request->content;
         if($request->hasFile('image') != null) {
             $request->validate([
-            'image' => 'image|mimes:jpeg,png,jpg,',
+                'image' => 'image|mimes:jpeg,png,jpg,',
             ]);
             File::delete($data['image']);
             $date = date('Y-m-d');
@@ -282,6 +324,7 @@ class BlogController extends Controller
     public function destroy($id, Request $request)
     {
         $data = blog::findOrFail($id);
+        File::delete($data->image);
         $data->delete();
         $request->session()->flash('delete');
         return redirect(route('admin-blog-list'));

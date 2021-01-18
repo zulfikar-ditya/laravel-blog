@@ -75,14 +75,31 @@ class BlogController extends Controller
         ]);
     }
 
+    public function SelectCategory(Request $request) 
+    {
+        $data = category::orderBy('id', 'desc')->paginate(10);
+        $search = '';
+        if ($request->search) {
+            $search = $request->search;
+            $data = category::where('name', 'like', '%'.$search.'%')->orderBy('id', 'desc')->paginate(10);
+        }
+        $dataCount = count($data);
+        return view('reporter.select-category', [
+            'data' => $data,
+            'dataCount' => $dataCount,
+            'search' => $search,
+            ]
+        );
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        $category = category::all();
+        $category = category::findOrFail($id);
         return view('reporter.add', ['category' => $category]);
     }
 
@@ -92,7 +109,7 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $request->validate([
             'title' => 'max:100',
@@ -103,7 +120,7 @@ class BlogController extends Controller
         $newData->title = $request->title;
         $newData->image_source = $request->image_source;
         $newData->content = $request->content;
-        $newData->category = $request->category;
+        $newData->category = category::findOrFail($id)->id;
         $newData->user = Auth::user()->id;
         $date = date('Y-m-d');
         $place = str_replace('$date$', $date, 'public/images/post/$date$/');
@@ -142,11 +159,38 @@ class BlogController extends Controller
             ['user', '=', Auth::user()->id],
         ])
         ->get();
-        if (count($data) == 0) {
-            return abort(404);
-        }
-        $category = category::all();
+        $category = category::findOrFail($data[0]['category']);
         return view('reporter.edit', ['data' => $data, 'category' => $category]);
+    }
+
+    public function updateCategory(Request $request, $id)
+    {
+        $blog = blog::findOrFail($id);
+        $category = category::orderBy('id', 'desc')->paginate(20);
+        $search = '';
+        $dataCount = '';
+        if($request->search) {
+            $search = $request->search;
+            $category = category::where('name', 'like', '%'.$search.'%')->orderBy('id', 'desc')->paginate(20);
+            $dataCount = count($category);
+        }
+        return view('reporter.update-category', 
+            [
+                'data' => $category,
+                'blog' => $blog,
+                'search' => $search,
+                'dataCount' => $dataCount
+            ]
+        );
+    }
+
+    public function saveUpdateCategory(Request $request, $id)
+    {
+        $blog = blog::findOrFail($id);
+        $blog['category'] = $request->category;
+        $blog->save();
+        $request->session()->flash('success-update');
+        return redirect(route('reporter-list-post'));
     }
 
     /**
@@ -211,7 +255,7 @@ class BlogController extends Controller
         }
         return view('reporter.delete', ['data' => $data[0] ]);
     }
-    
+
     public function destroy(Request $request, $id)
     {
         $data = blog::where([

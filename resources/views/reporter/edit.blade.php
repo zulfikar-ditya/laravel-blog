@@ -3,7 +3,7 @@
 @section('default-title', '- Edit Post - '.ucwords($data[0]['title']))
 
 @section('default-content')
-<div class="container bg-white shadow p-5" style="margin-top: 70px">
+<div class="container bg-white shadow p-5 text-capitalize" style="margin-top: 70px">
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
             <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
@@ -58,16 +58,8 @@
                         </div>
                         <div class="form-group">
                             <label for="">category <span class="text-danger">*</span></label>
-                            <select name="category" id="" class="form-control" required>
-                                <option value="" selected>--------</option>
-                                @foreach ($category as $item)
-                                @if ($data[0]['category'] == $item['id'])
-                                <option value="{{$item['id']}}" selected>{{$item['name']}}</option>
-                                @else
-                                <option value="{{$item['id']}}">{{$item['name']}}</option>
-                                @endif
-                                @endforeach
-                            </select>
+                            <input type="text" name="category" value="{{$data['0']->GetCategory->name}}" id="" class="form-control" readonly disabled>
+                            <small>Select <a href="{{route('reporter-edit-category-post', ['id' => $data[0]['id']])}}">Again</a></small>
                         </div>
                         <div class="form-group">
                             <label for="">Content <span class="text-danger">*</span></label>

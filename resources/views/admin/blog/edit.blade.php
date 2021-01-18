@@ -71,17 +71,8 @@
                         </div>
                         <div class="form-group">
                             <label for="">category <span class="text-danger">*</span></label>
-                            <select name="category" id="" class="form-control" required>
-                                <option value="" selected>--------</option>
-                                @foreach ($category as $item)
-                                @if ($data->category == $item['id'])
-                                <option value="{{$item['id']}}" selected>{{$item['name']}}</option>
-                                @else
-                                <option value="{{$item['id']}}">{{$item['name']}}</option>
-                                @endif
-                                @endforeach
-                            </select>
-                            <small class="text-danger">Select again</small>
+                            <input type="text" name="" value="{{$category->name}}" id="" class="form-control" readonly disabled>
+                            <small class="">Select <a href="{{route('admin-blog-edit-category', ['id' => $data['id']])}}">again</a></small>
                         </div>
                         <div class="form-group">
                             <label for="">Content <span class="text-danger">*</span></label>

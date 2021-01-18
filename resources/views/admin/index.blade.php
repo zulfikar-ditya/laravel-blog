@@ -48,7 +48,7 @@
             <div class="mt-3">
                 <p class="lead">Articles</p>
                 <ul class="list-group border-none shadow">
-                    <a href="{{route('admin-blog-add')}}">
+                    <a href="{{route('admin-blog-select-category')}}">
                         <li class="list-group-item bg-indigo">
                             <span class="mr-1">Add </span> <i class="fa fa-plus-square"></i>
                         </li>

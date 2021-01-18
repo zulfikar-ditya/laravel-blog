@@ -32,7 +32,7 @@
         @endif
         <div class="row my-3">
             <div class="col-md">
-                <a href="{{route('reporter-add-post')}}" class="btn btn-outline-danger">Add <i class="fas fa-plus"></i></a>
+                <a href="{{route('reporter-select-category')}}" class="btn btn-outline-danger">Add <i class="fas fa-plus"></i></a>
             </div>
             <div class="col-md">
                 <form action="" method="get" class="form-inline">

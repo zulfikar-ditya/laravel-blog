@@ -37,12 +37,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">category <span class="text-danger">*</span></label>
-                        <select name="category" id="" class="form-control" required>
-                            <option value="" selected>-----------</option>
-                            @foreach ($category as $item)
-                            <option value="{{$item['id']}}">{{$item['name']}}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" value="{{$category['name']}}" id="" class="form-control" disabled readonly>
                     </div>
                     <div class="form-group">
                         <label for="">content <span class="text-danger">*</span></label>
